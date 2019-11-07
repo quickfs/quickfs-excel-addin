@@ -56,7 +56,7 @@ Public Function Login(ByVal email As String, ByVal password As String) As Boolea
     Select Case WebResponse.statusCode
         Case 401
             MsgBox _
-                Title:="[Quickfs] Login Error", _
+                Title:="[QuickFS] Login Error", _
                 Prompt:="The provided credentials are invalid.", _
                 Buttons:=vbCritical
         Case 200
@@ -73,7 +73,7 @@ Public Function Login(ByVal email As String, ByVal password As String) As Boolea
             ' Process api_tier and api_key
             If APItier = "inactive" Then
                 MsgBox _
-                    Title:="[Quickfs] Login Error", _
+                    Title:="[QuickFS] Login Error", _
                     Prompt:="You have not verified your email address yet." & vbCrLf & _
                             "To resend the verification email, visit https://quickfs.net/profile.", _
                     Buttons:=vbCritical
@@ -102,7 +102,7 @@ ErrorHandler:
     InvalidateAppRibbon
     Dim answer As Integer
     MsgBox _
-        Title:="[Quickfs] Login Error", _
+        Title:="[QuickFS] Login Error", _
         Prompt:="Unable to authenticate with quickfs.net at this time. Please try again and contact support@quickfs.net if this problem persists.", _
         Buttons:=vbCritical
 End Function

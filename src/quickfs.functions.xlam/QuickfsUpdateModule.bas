@@ -111,7 +111,7 @@ NoManager:
     
     #If Mac Then
         MsgBox _
-            Title:="[Quickfs] Add-In Manager Updated", _
+            Title:="[QuickFS] Add-In Manager Updated", _
             Prompt:="A new version of the add-in manager has been installed. " & _
                     "You may be prompted to enable the updated macros. " & _
                     "Macros must be enabled or the add-in will not function properly."
@@ -156,8 +156,8 @@ ReportError:
     LogMessage "Failed to load add-in manager: " & Err.description
 
     MsgBox _
-        Title:="[Quickfs] Add-in Error", _
-        Prompt:="The Quickfs add-in manager was not loaded correctly. " & _
+        Title:="[QuickFS] Add-in Error", _
+        Prompt:="The QuickFS add-in manager was not loaded correctly. " & _
                 "Please try restarting Excel and contact support@quickfs.net if this problem persists.", _
         Buttons:=vbCritical
 

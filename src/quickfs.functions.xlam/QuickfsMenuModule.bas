@@ -64,12 +64,12 @@ Public Sub QuickfsCheckQuota(Optional control)
     CheckQuota
     If QuotaTotal < 1 Then
         MsgBox _
-            Title:="[Quickfs] Quota Unavailable", _
+            Title:="[QuickFS] Quota Unavailable", _
             Prompt:="Quota usage is unavailable at this time. Please try again and contact support@quickfs.net if this problem persists.", _
             Buttons:=vbCritical
     Else
         MsgBox _
-            Title:="[Quickfs] Quota Usage", _
+            Title:="[QuickFS] Quota Usage", _
             Prompt:="You have used " & QuotaUsed & " datapoints of your " & QuotaTotal & " quota limit.", _
             Buttons:=vbInformation
     End If
@@ -122,10 +122,10 @@ Public Sub QuickfsAbout(Optional control)
             "or visit https://quickfs.net to chat with us live." & vbCrLf & _
         vbCrLf & _
         vbCrLf & _
-        "  Thank you for using Quickfs!"
+        "  Thank you for using QuickFS!"
         
     MsgBox _
-        Title:="[Quickfs] Add-in Information", _
+        Title:="[QuickFS] Add-in Information", _
         Prompt:=msg
 End Sub
 
@@ -189,7 +189,7 @@ Public Sub UpdateCustomMenu()
         For i = 1 To Controls.count
             Dim control
             Set control = Controls.Item(i)
-            If control.Tag = "Quickfs" Then Set CustomMenu = control
+            If control.Tag = "QuickFS" Then Set CustomMenu = control
         Next i
         
         On Error GoTo 0
@@ -199,18 +199,18 @@ Public Sub UpdateCustomMenu()
             ' Button definitions:  Cap&tion,MacroName,ToolTip,IconId,BeginGroupBool
             '      (IconId 39 is blue right arrow, and is a good default option)
             
-            ButtonDefs(1) = "Log&in,QuickfsShowLogin,Login to Quickfs API,2882,True"
-            ButtonDefs(2) = "Log&out,QuickfsLogout,Logout from Quickfs API,1019,False"
+            ButtonDefs(1) = "Log&in,QuickfsShowLogin,Login to QuickFS API,2882,True"
+            ButtonDefs(2) = "Log&out,QuickfsLogout,Logout from QuickFS API,1019,False"
             ButtonDefs(3) = "&Pro,QuickfsUpgrade,Upgrade to premium access,225,False"
             ButtonDefs(4) = "Check &Quota,QuickfsCheckQuota,Check quota usage,52,False"
             
 '            ButtonDefs(5) = "&Watchlist,QuickfsWatchlist,Go to your watchlist,183,True"
 '            ButtonDefs(6) = "&Screener,QuickfsScreener,Go to the online screener,601,False"
 '            ButtonDefs(7) = "&Templates,QuickfsTemplates,Download pre-built templates,357,False"
-            ButtonDefs(8) = "&Help,QuickfsHelp,Read the Quickfs add-in guide,49,False"
+            ButtonDefs(8) = "&Help,QuickfsHelp,Read the QuickFS add-in guide,49,False"
             
             ButtonDefs(9) = "&Refresh Data,QuickfsRefresh,Recalculate open Excel Workbooks,37,True"
-            ButtonDefs(10) = "Un&link Formulas,QuickfsUnlink,Unlink Quickfs formulas,2309,False"
+            ButtonDefs(10) = "Un&link Formulas,QuickfsUnlink,Unlink QuickFS formulas,2309,False"
             
             ButtonDefs(11) = "&Message Log,QuickfsMessages,Display message log,588,True"
             ButtonDefs(12) = "Check For &Updates,QuickfsUpdate,Check for updates,273,False"
@@ -221,8 +221,8 @@ Public Sub UpdateCustomMenu()
         
             Set CustomMenu = Application.CommandBars("Worksheet Menu Bar").Controls.Add(msoControlPopup, temporary:=True)
             With CustomMenu
-                .Caption = "&Quickfs"
-                .Tag = "Quickfs"
+                .Caption = "&QuickFS"
+                .Tag = "QuickFS"
                 .enabled = True
                 .Visible = True
             End With
@@ -269,7 +269,7 @@ Public Sub RemoveCustomMenu()
         For i = 1 To Controls.count
             Dim control
             Set control = Controls.Item(i)
-            If control.Tag = "Quickfs" Then control.Delete
+            If control.Tag = "QuickFS" Then control.Delete
         Next i
     End If
 End Sub

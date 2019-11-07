@@ -7,7 +7,7 @@ Public Sub UnlinkFormulas()
     
     If Not ActiveWorkbook.Saved Then
         MsgBox _
-            Title:="[Quickfs] Unlink Canceled", _
+            Title:="[QuickFS] Unlink Canceled", _
             Prompt:="This workbook contains unsaved changes. You must save before it can be unlinked.", _
             Buttons:=vbExclamation
         Exit Sub
@@ -21,7 +21,7 @@ Public Sub UnlinkFormulas()
 
     Dim choice As Variant
     choice = MsgBox( _
-        Title:="[Quickfs] Unlink Confirmation", _
+        Title:="[QuickFS] Unlink Confirmation", _
         Prompt:="This will save a copy of the current workbook with all QFS formulas replaced by their current values. Do you wish to continue?", _
         Buttons:=vbYesNo Or vbQuestion)
     Select Case choice
@@ -58,7 +58,7 @@ Public Sub UnlinkFormulas()
     
 ShowWarning:
     MsgBox _
-        Title:="[Quickfs] Unlink Error", _
+        Title:="[QuickFS] Unlink Error", _
         Prompt:="This workbook cannot be unlinked. Please contact support@quickfs.net if this problem persists.", _
         Buttons:=vbCritical
 End Sub

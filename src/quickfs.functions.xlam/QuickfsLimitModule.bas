@@ -6,8 +6,8 @@ Private RedisplayWarning As Date
 
 Public Sub ShowRateLimitWarning(Optional reset As Boolean = True)
     MsgBox _
-        Title:="[Quickfs] Limit Exceeded", _
-        Prompt:="You have exhausted your Quickfs data limit. Try again later or contact support@quickfs.net to request a limit increase.", _
+        Title:="[QuickFS] Limit Exceeded", _
+        Prompt:="You have exhausted your QuickFS data limit. Try again later or contact support@quickfs.net to request a limit increase.", _
         Buttons:=vbCritical
     If reset Then SetRateLimitTimer
 End Sub
