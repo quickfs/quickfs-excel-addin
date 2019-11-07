@@ -5,4 +5,5 @@ quickfs.cfg
 quickfs.log
 tests/
 tests.md
+/dist
 ~$*
