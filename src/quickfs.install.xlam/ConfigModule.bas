@@ -2,8 +2,8 @@ Attribute VB_Name = "ConfigModule"
 Option Explicit
 Option Private Module
 
-Public Const RELEASES_URL = "https://api.github.com/repos/quickfs/xlam/releases"
-Public Const DOWNLOADS_URL = "https://github.com/quickfs/xlam/releases/download"
+Public Const RELEASES_URL = "https://api.github.com/repos/quickfs/quickfs-excel-addin/releases"
+Public Const DOWNLOADS_URL = "https://github.com/quickfs/quickfs-excel-addin/releases/download"
 
 Public Const AddInInstalledFile = "quickfs.xlam"
 Public Const LegacyInstalledFile = "quickfsnet.xlam"
