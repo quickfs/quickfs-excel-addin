@@ -204,9 +204,9 @@ Public Sub UpdateCustomMenu()
             ButtonDefs(3) = "&Pro,QuickfsUpgrade,Upgrade to premium access,225,False"
             ButtonDefs(4) = "Check &Quota,QuickfsCheckQuota,Check quota usage,52,False"
             
-            ButtonDefs(5) = "&Watchlist,QuickfsWatchlist,Go to your watchlist,183,True"
-            ButtonDefs(6) = "&Screener,QuickfsScreener,Go to the online screener,601,False"
-            ButtonDefs(7) = "&Templates,QuickfsTemplates,Download pre-built templates,357,False"
+'            ButtonDefs(5) = "&Watchlist,QuickfsWatchlist,Go to your watchlist,183,True"
+'            ButtonDefs(6) = "&Screener,QuickfsScreener,Go to the online screener,601,False"
+'            ButtonDefs(7) = "&Templates,QuickfsTemplates,Download pre-built templates,357,False"
             ButtonDefs(8) = "&Help,QuickfsHelp,Read the Quickfs add-in guide,49,False"
             
             ButtonDefs(9) = "&Refresh Data,QuickfsRefresh,Recalculate open Excel Workbooks,37,True"

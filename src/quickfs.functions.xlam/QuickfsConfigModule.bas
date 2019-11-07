@@ -3,14 +3,14 @@ Option Explicit
 Option Private Module
 
 Public Const CACHE_TIMEOUT_MINUTES = 60
-Public Const MAX_BATCH_SIZE = 99
+Public Const MAX_BATCH_SIZE = 1000
 
 Public Const PROFILE_URL = "https://quickfs.net/account"
 Public Const WATCHLIST_URL = "https://quickfs.net/watchlist"
 Public Const SCREENER_URL = "https://quickfs.net/screener"
 Public Const TEMPLATES_URL = "https://quickfs.net/templates"
 Public Const SIGNUP_URL = "https://quickfs.net/upgrade"
-Public Const HELP_URL = "https://quickfs.net/using-the-excel-add-in/"
+Public Const HELP_URL = "https://quickfs.net/using-the-excel-add-in"
 Public Const UPGRADE_URL = "https://quickfs.net/upgrade"
 
 Public Const AUTH_URL = "https://api.quickfs.net/v2/tokens"
