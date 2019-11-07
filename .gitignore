@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+quickfs.key
+quickfs.cfg
+quickfs.log
+tests/
+tests.md
+~$*
