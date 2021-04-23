@@ -7,6 +7,7 @@ Private Sub Workbook_Open()
 
     LogMessage "Loading add-in manager"
     
+    AddInUninstalling = False
     loadingManager = True
     
     ' Install AddIn on first open

@@ -401,7 +401,7 @@ End Enum
 ''
 Public Enum WebFormat
     PlainText = 0
-    Json = 1
+    json = 1
     FormUrlEncoded = 2
     XML = 3
     Custom = 9
@@ -786,7 +786,7 @@ Public Function ParseByFormat(value As String, Format As WebFormat, _
     End If
 
     Select Case Format
-    Case WebFormat.Json
+    Case WebFormat.json
         Set ParseByFormat = ParseJson(value)
     Case WebFormat.FormUrlEncoded
         Set ParseByFormat = ParseUrlEncoded(value)
@@ -848,7 +848,7 @@ Public Function ConvertToFormat(Obj As Variant, Format As WebFormat, Optional Cu
     On Error GoTo web_ErrorHandling
 
     Select Case Format
-    Case WebFormat.Json
+    Case WebFormat.json
         ConvertToFormat = ConvertToJson(Obj)
     Case WebFormat.FormUrlEncoded
         ConvertToFormat = ConvertToUrlEncoded(Obj)
@@ -1582,7 +1582,7 @@ Public Function FormatToMediaType(Format As WebFormat, Optional CustomFormat As 
     Select Case Format
     Case WebFormat.FormUrlEncoded
         FormatToMediaType = "application/x-www-form-urlencoded;charset=UTF-8"
-    Case WebFormat.Json
+    Case WebFormat.json
         FormatToMediaType = "application/json"
     Case WebFormat.XML
         FormatToMediaType = "application/xml"

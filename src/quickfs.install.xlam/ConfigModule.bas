@@ -17,6 +17,7 @@ Public Const AddInLogFile = "quickfs.log"
 ' These will be loaded on Workbook_Open
 Public AddInInstalled As Boolean
 Public cwd As String
+Public AddInUninstalling As Boolean
 
 Public Function AddInManagerFile() As String
     AddInManagerFile = ThisWorkbook.name
@@ -66,7 +67,7 @@ End Function
 
 Public Function SafeDir(file As String, Optional attributes As VbFileAttribute) As String
     On Error Resume Next
-    SafeDir = VBA.dir(file, attributes)
+    SafeDir = VBA.Dir(file, attributes)
 End Function
 
 Public Sub SafeMkDir(path As String)
@@ -86,54 +87,8 @@ Public Sub SafeMkDir(path As String)
     End If
 End Sub
 
-Public Function ExcelVersion() As String
-    Dim version As Integer: version = MSOfficeVersion
-    ExcelVersion = "Unsupported"
-    
-    #If Mac Then
-        If version = 14 Then
-            ExcelVersion = "Mac2011"
-        ElseIf version = 15 Then
-            ExcelVersion = "Mac2016"
-        ElseIf version = 16 Then
-            ExcelVersion = "Mac2016"
-        End If
-    #Else
-        If version = 12 Then
-            ExcelVersion = "Win2007"
-        ElseIf version = 14 Then
-            ExcelVersion = "Win2010"
-        ElseIf version = 15 Then
-            ExcelVersion = "Win2013"
-        ElseIf version = 16 Then
-            ExcelVersion = "Win2016"
-        End If
-    #End If
-End Function
-
-' Returns the version of MS Office being run
-'    9 = Office 2000
-'   10 = Office XP / 2002
-'   11 = Office 2003 & LibreOffice 3.5.2
-'   12 = Office 2007
-'   14 = Office 2010 or Office 2011 for Mac
-'   15 = Office 2013 or Office 2016 for Mac
-'   16 = Office 2016 for Mac or Windows
-Public Function MSOfficeVersion() As Integer
-    Dim verStr As String
-    Dim startPos As Integer
-    MSOfficeVersion = 0
-    verStr = Application.version
-    startPos = VBA.InStr(verStr, ".")
-    On Error Resume Next
-    If startPos > 0 Then
-        MSOfficeVersion = CInt(VBA.Left(verStr, startPos - 1))
-    Else
-        MSOfficeVersion = CInt(verStr)
-    End If
-End Function
-
 Sub auto_add()
 End Sub
 Sub auto_remove()
+    AddInUninstalling = True
 End Sub

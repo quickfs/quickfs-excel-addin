@@ -69,6 +69,7 @@ Private Sub App_WorkbookOpen(ByVal wb As Workbook)
 End Sub
 
 Private Sub App_WorkbookBeforeClose(ByVal wb As Workbook, Cancel As Boolean)
+    If AddInUninstalling Then Exit Sub
     If Not GetSetting("updateOnWorkbookBeforeClose", True) Then Exit Sub
     trigger = "WorkbookBeforeClose"
     CloseInstaller

@@ -861,8 +861,8 @@ End Function
 
 Private Sub Class_Initialize()
     ' Set default values
-    Me.RequestFormat = WebFormat.Json
-    Me.ResponseFormat = WebFormat.Json
+    Me.RequestFormat = WebFormat.json
+    Me.ResponseFormat = WebFormat.json
     Me.UserAgent = WebUserAgent
 
     Set Me.Headers = New Collection

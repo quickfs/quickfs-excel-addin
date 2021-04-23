@@ -85,14 +85,14 @@ GetCurrent:
     
     WebClient.BaseUrl = RELEASES_URL & "/tags/v" & AddInVersion
     WebRequest.Method = WebMethod.HttpGet
-    WebRequest.ResponseFormat = WebFormat.Json
+    WebRequest.ResponseFormat = WebFormat.json
     Set WebResponse = WebClient.Execute(WebRequest)
     Select Case WebResponse.statusCode
     Case 200
-        current = WebResponse.Data.Item("tag_name")
-        cReleased = WebResponse.Data.Item("created_at")
-        releaseUrl = WebResponse.Data.Item("html_url")
-        For Each asset In WebResponse.Data.Item("assets")
+        current = WebResponse.data.Item("tag_name")
+        cReleased = WebResponse.data.Item("created_at")
+        releaseUrl = WebResponse.data.Item("html_url")
+        For Each asset In WebResponse.data.Item("assets")
             If asset.Item("name") = "quickfs.install.xlam" Then
                 loaderUrl = asset.Item("browser_download_url")
             End If
@@ -109,12 +109,12 @@ GetLatest:
     If allowPrereleases Then WebClient.BaseUrl = RELEASES_URL
 
     WebRequest.Method = WebMethod.HttpGet
-    WebRequest.ResponseFormat = WebFormat.Json
+    WebRequest.ResponseFormat = WebFormat.json
     Set WebResponse = WebClient.Execute(WebRequest)
     Select Case WebResponse.statusCode
     Case 200
-        Dim release: Set release = WebResponse.Data
-        If TypeName(release) = "Collection" Then Set release = WebResponse.Data(1)
+        Dim release: Set release = WebResponse.data
+        If TypeName(release) = "Collection" Then Set release = WebResponse.data(1)
         latest = release.Item("tag_name")
         lReleased = release.Item("created_at")
         lReleaseDate = CDate(VBA.DateValue(VBA.Mid(lReleased, 1, 10)) + VBA.TimeValue(VBA.Mid(lReleased, 12, 8)))
