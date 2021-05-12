@@ -153,10 +153,8 @@ Private Function ConvertValue(ByRef Data As Variant)
         Next
         Set ConvertValue = Data
         Exit Function
-    ElseIf TypeName(Data) = "String" And VBA.Len(Data) = 10 And VBA.IsDate(Data) Then
+    ElseIf VBA.IsDate(Data) Then
         Data = CDate(Data)
-    ElseIf TypeName(Data) = "String" And VBA.Len(Data) = 24 And VBA.IsDate(VBA.Mid(Data, 1, 10)) Then
-        Data = CDate(VBA.DateValue(VBA.Mid(Data, 1, 10)) + VBA.TimeValue(VBA.Mid(Data, 12, 8)))
     ElseIf TypeName(Data) = "String" Then
         Dim languageAdjusted As String
         languageAdjusted = AdjustForLanguage(CStr(Data))
