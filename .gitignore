@@ -6,4 +6,5 @@ quickfs.log
 tests/
 tests.md
 /dist
+/dev-tests
 ~$*
