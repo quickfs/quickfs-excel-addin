@@ -19,7 +19,7 @@ Public Sub LogMessage(msg As String)
 End Sub
 
 Public Sub TrimLog(Optional days As Integer = 0)
-    If days = 0 Then days = GetSetting("logRetentionDays", 30)
+    If days = 0 Then days = GetSetting("logRetentionDays", 3)
     Dim line As String, timestamp As String, time As Date, trimmed As Integer
     trimmed = 0
     VBA.FileCopy SavePath(AddInLogFile), SavePath(AddInLogFile & ".tmp")

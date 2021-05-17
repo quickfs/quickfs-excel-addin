@@ -180,7 +180,7 @@ HandleErrors:
         QFS = CVErr(xlErrNA)
     End If
     
-    LogMessage "VBA error code " & Err.Number & " [" & Err.description & "]", address
+    ' LogMessage "VBA error code " & Err.Number & " [" & Err.description & "]", address
     
 Finish:
 
