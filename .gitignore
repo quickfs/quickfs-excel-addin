@@ -7,4 +7,5 @@ tests/
 tests.md
 /dist
 /dev-tests
+/Debug Logging
 ~$*
