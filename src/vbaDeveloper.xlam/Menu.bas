@@ -123,7 +123,7 @@ End Sub
 
 Public Sub exportVbProject(ByVal projectPath As String)
     On Error GoTo exportVbProject_Error
-
+    
     Dim project As VBProject
     Set project = GetProjectByPath(projectPath)
     Build.exportVbaCode project

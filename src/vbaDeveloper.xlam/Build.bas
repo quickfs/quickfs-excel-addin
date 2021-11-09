@@ -14,7 +14,7 @@ Attribute VB_Name = "Build"
 '           [HKEY_CURRENT_USER\Software\Policies\Microsoft\office\{Excel-Version}\excel\security]
 '           "accessvbom"=dword:00000001
 '       If you get 'path not found' exception in Excel 2013, include the following step:
-'           In 'Trust Center' settings, go to 'File Block Settings' and un-check 'open' and/or 'save' 
+'           In 'Trust Center' settings, go to 'File Block Settings' and un-check 'open' and/or 'save'
 '           for 'Excel 2007 and later Macro-Enabled Workbooks and Templates'.
 ' 5. If using a non-English version of Excel, rename your current workbook into ThisWorkbook (in VB Editor, press F4,
 '    then under the local name for Microsoft Excel Objects, select the workbook. Set the property '(Name)' to ThisWorkbook)
