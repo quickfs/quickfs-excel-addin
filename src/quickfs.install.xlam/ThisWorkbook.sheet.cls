@@ -2,8 +2,6 @@ Private handler As AppEventHandler
 
 Private Sub Workbook_Open()
     SafeMkDir SavePath
-    
-    CleanUpUninstalledAddIns
 
     LogMessage "Loading add-in manager"
     
