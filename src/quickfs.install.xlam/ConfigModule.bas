@@ -46,7 +46,6 @@ Public Function AddInVersion(Optional file As String) As String
     If file = "" Then file = ThisWorkbook.name
     On Error Resume Next
     AddInVersion = Workbooks(file).Sheets("quickfs").Range("AppVersion").value
-    AddInVersion = Workbooks(file).Sheets("quickfsnet").Range("AppVersion").value
 End Function
 
 Public Function AddInReleaseDate(Optional file As String) As Date
@@ -54,7 +53,6 @@ Public Function AddInReleaseDate(Optional file As String) As Date
     On Error Resume Next
     AddInReleaseDate = VBA.Now()
     AddInReleaseDate = Workbooks(file).Sheets("quickfs").Range("ReleaseDate").value
-    AddInReleaseDate = Workbooks(file).Sheets("quickfsnet").Range("ReleaseDate").value
 End Function
 
 Public Function AddInLocation(Optional file As String) As String
