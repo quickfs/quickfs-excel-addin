@@ -23,7 +23,7 @@ Private Sub UserForm_Initialize()
     
     Dim i As addin, installed As addin
     For Each i In Application.AddIns
-        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Or VBA.LCase(i.name) = VBA.LCase(LegacyInstalledFile)) And VBA.LCase(i.FullName) = VBA.LCase(SavePath(i.name)) Then
+        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile)) And VBA.LCase(i.FullName) = VBA.LCase(SavePath(i.name)) Then
             Set installed = i
             Exit For
         End If

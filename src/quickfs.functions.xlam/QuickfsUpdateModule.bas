@@ -19,23 +19,11 @@ Public Function HasInstalledAddInManager() As Boolean
         SafeDir(LocalPath(AddInInstalledFile), vbHidden) <> ""
 End Function
 
-Public Function HasInstalledLegacyManager() As Boolean
-    HasInstalledLegacyManager = _
-        SafeDir(LocalPath(LegacyInstalledFile)) <> "" Or _
-        SafeDir(LocalPath(LegacyInstalledFile), vbHidden) <> ""
-End Function
-
-Public Function HasStagedLegacyUpdate() As Boolean
-    HasStagedLegacyUpdate = _
-        SafeDir(StagingPath(LegacyInstalledFile)) <> "" Or _
-        SafeDir(StagingPath(LegacyInstalledFile), vbHidden) <> ""
-End Function
-
 Public Function HasStagedUpdate() As Boolean
     HasStagedUpdate = _
         SafeDir(StagingPath(AddInInstalledFile)) <> "" Or _
         SafeDir(StagingPath(AddInInstalledFile), vbHidden) <> "" Or _
-        HasStagedLegacyUpdate
+        False
 End Function
 
 ' Promotes the staged add-in manager to active
@@ -67,7 +55,7 @@ NoManager:
     
     ' Uninstall the active manager
     On Error Resume Next
-    Dim i As addIn, installed As addIn, legacy As addIn
+    Dim i As addIn, installed As addIn
     For Each i In Application.AddIns
         If i.name = AddInInstalledFile Then
             i.installed = False
@@ -75,13 +63,6 @@ NoManager:
             SetAttr i.FullName, vbNormal
             Kill i.FullName
             If i.path = ThisWorkbook.path Then Set installed = i
-        End If
-        If i.name = LegacyInstalledFile Then
-            i.installed = False
-            Workbooks(i.name).Close
-            SetAttr i.FullName, vbNormal
-            Kill i.FullName
-            If i.path = ThisWorkbook.path Then Set legacy = i
         End If
     Next i
     On Error GoTo ReportError
@@ -95,15 +76,6 @@ NoManager:
     If HasInstalledAddInManager Then
         SetAttr LocalPath(AddInInstalledFile), vbNormal
         Kill LocalPath(AddInInstalledFile)
-    End If
-    
-    If HasInstalledLegacyManager Then
-        SetAttr LocalPath(LegacyInstalledFile), vbNormal
-        Kill LocalPath(LegacyInstalledFile)
-    End If
-    
-    If HasStagedLegacyUpdate Then
-        Name StagingPath(LegacyInstalledFile) As StagingPath(AddInInstalledFile)
     End If
     
     Name StagingPath(AddInInstalledFile) As LocalPath(AddInInstalledFile)
@@ -173,7 +145,7 @@ Private Function UnloadAddInManager() As Boolean
     Dim wb As Workbook
     
     For Each wb In Workbooks
-        If wb.name = AddInInstalledFile Or wb.name = LegacyInstalledFile Then
+        If wb.name = AddInInstalledFile Then
             LogMessage "Unloading add-in manager"
             wb.Close
         End If

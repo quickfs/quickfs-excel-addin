@@ -1,8 +1,4 @@
 quickfs!AppVersion,=quickfs!$B$1,
-quickfsnet!AppVersion,=quickfsnet!$B$1,
 quickfs!AppVersionLabel,=quickfs!$A$1,
-quickfsnet!AppVersionLabel,=quickfsnet!$A$1,
 quickfs!ReleaseDate,=quickfs!$B$3,
-quickfsnet!ReleaseDate,=quickfsnet!$B$3,
 quickfs!ReleaseDateLabel,=quickfs!$A$3,
-quickfsnet!ReleaseDateLabel,=quickfsnet!$A$3,

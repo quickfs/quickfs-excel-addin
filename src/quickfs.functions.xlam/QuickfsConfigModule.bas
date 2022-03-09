@@ -29,11 +29,8 @@ Public Const MISSING_VALUE_ERROR = 20409
 Public Const UNSPECIFIED_API_ERROR = 20500
 
 Public Const AddInInstalledFile = "quickfs.xlam"
-Public Const LegacyInstalledFile = "quickfsnet.xlam"
 Public Const AddInInstallerFile = "quickfs.install.xlam"
-Public Const LegacyInstallerFile = "quickfsnet.install.xlam"
 Public Const AddInFunctionsFile = "quickfs.functions.xlam"
-Public Const LegacyFunctionsFile = "quickfsnet.functions.xlam"
 Public Const AddInKeyFile = "quickfs.key"
 Public Const AddInLogFile = "quickfs.log"
 Public Const AddInSettingsFile = "quickfs.cfg"
@@ -41,9 +38,7 @@ Public Const AddInSettingsFile = "quickfs.cfg"
 Public Function AddInManagerFile() As String
     On Error Resume Next
     AddInManagerFile = Workbooks(AddInInstallerFile).name
-    AddInManagerFile = Workbooks(LegacyInstallerFile).name
     AddInManagerFile = Workbooks(AddInInstalledFile).name
-    AddInManagerFile = Workbooks(LegacyInstalledFile).name
 End Function
 
 Public Function StagingPath(file As String) As String

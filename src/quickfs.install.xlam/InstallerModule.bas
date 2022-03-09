@@ -32,13 +32,12 @@ Public Sub FinishInstalling()
     On Error GoTo HandleError
     
     installing = True
-    Dim installPath As String, legacyPath As String
+    Dim installPath As String
     installPath = SavePath(AddInInstalledFile)
-    legacyPath = SavePath(LegacyInstalledFile)
     
     Dim i As addin, installed As addin
     For Each i In Application.AddIns
-        If VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Or VBA.LCase(i.name) = VBA.LCase(LegacyInstalledFile) Then
+        If VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Then
             i.installed = False
             On Error Resume Next
             Workbooks(i.name).Close
@@ -59,13 +58,6 @@ Public Sub FinishInstalling()
     If SafeDir(installPath, vbHidden) <> "" Then
         SetAttr installPath, vbNormal
         Kill installPath
-    End If
-    
-    Workbooks(LegacyInstalledFile).Close
-    If SafeDir(legacyPath) <> "" Then Kill legacyPath
-    If SafeDir(legacyPath, vbHidden) <> "" Then
-        SetAttr legacyPath, vbNormal
-        Kill legacyPath
     End If
     On Error GoTo HandleError
     
@@ -117,7 +109,7 @@ Public Sub FinishInstalling()
     ' Warn about restarts
     Dim leftover As addin
     For Each i In Application.AddIns
-        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Or VBA.LCase(i.name) = VBA.LCase(LegacyInstalledFile)) And VBA.LCase(i.FullName) <> VBA.LCase(installPath) Then
+        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile)) And (VBA.LCase(i.FullName) <> VBA.LCase(installPath)) Then
             Set leftover = i
             Exit For
         End If
@@ -158,7 +150,7 @@ Public Sub CancelInstall()
         ' close the installed add-ins and continue
         Dim i As addin
         For Each i In Application.AddIns
-            If VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Or VBA.LCase(i.name) = VBA.LCase(LegacyInstalledFile) Then
+            If VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Then
                 ' Originally wanted to use AddIn.IsOpen here, but that
                 ' seems to not be available on Mac so we have to just
                 ' try to close the workbook directly and ignore errors
@@ -226,35 +218,6 @@ Public Sub UninstallAddIn()
     If SafeDir(StagingPath(AddInFunctionsFile), vbHidden) <> "" Then
         SetAttr StagingPath(AddInFunctionsFile), vbNormal
         Kill StagingPath(AddInFunctionsFile)
-    End If
-    
-    
-    ' Second check to make sure the add-in manager is removed
-    Workbooks(LegacyInstalledFile).Close
-    If SafeDir(LocalPath(LegacyInstalledFile)) <> "" Then Kill LocalPath(LegacyInstalledFile)
-    If SafeDir(LocalPath(LegacyInstalledFile), vbHidden) <> "" Then
-        SetAttr LocalPath(LegacyInstalledFile), vbNormal
-        Kill LocalPath(LegacyInstalledFile)
-    End If
-    
-    If SafeDir(StagingPath(LegacyInstalledFile)) <> "" Then Kill StagingPath(LegacyInstalledFile)
-    If SafeDir(StagingPath(LegacyInstalledFile), vbHidden) <> "" Then
-        SetAttr StagingPath(LegacyInstalledFile), vbNormal
-        Kill StagingPath(LegacyInstalledFile)
-    End If
-    
-    ' Second check to make sure the add-in functions are removed
-    Workbooks(LegacyFunctionsFile).Close
-    If SafeDir(LocalPath(LegacyFunctionsFile)) <> "" Then Kill LocalPath(LegacyFunctionsFile)
-    If SafeDir(LocalPath(LegacyFunctionsFile), vbHidden) <> "" Then
-        SetAttr LocalPath(LegacyFunctionsFile), vbNormal
-        Kill LocalPath(LegacyFunctionsFile)
-    End If
-    
-    If SafeDir(StagingPath(LegacyFunctionsFile)) <> "" Then Kill StagingPath(LegacyFunctionsFile)
-    If SafeDir(StagingPath(LegacyFunctionsFile), vbHidden) <> "" Then
-        SetAttr StagingPath(LegacyFunctionsFile), vbNormal
-        Kill StagingPath(LegacyFunctionsFile)
     End If
     
     ' Delete the api key file
@@ -327,12 +290,6 @@ Public Sub RemoveAddInFunctions()
     SetAttr StagingPath(AddInFunctionsFile), vbNormal
     Kill StagingPath(AddInFunctionsFile)
     
-    SetAttr LocalPath(LegacyFunctionsFile), vbNormal
-    Kill LocalPath(LegacyFunctionsFile)
-    
-    SetAttr StagingPath(LegacyFunctionsFile), vbNormal
-    Kill StagingPath(LegacyFunctionsFile)
-    
     LogMessage "Removed add-in functions workbook"
     
     cd ThisWorkbook.path
@@ -396,7 +353,7 @@ Sub CleanUpUninstalledAddIns()
     installPath = SavePath(AddInInstalledFile)
     Dim i As addin, installed As addin
     For Each i In Application.AddIns
-        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile) Or VBA.LCase(i.name) = VBA.LCase(LegacyInstalledFile)) And Not i.installed And VBA.LCase(i.FullName) <> VBA.LCase(installPath) Then
+        If (VBA.LCase(i.name) = VBA.LCase(AddInInstalledFile)) And Not i.installed And VBA.LCase(i.FullName) <> VBA.LCase(installPath) Then
             ClearAddInRegKey i.FullName
         End If
     Next i

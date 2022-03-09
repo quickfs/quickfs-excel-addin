@@ -6,10 +6,8 @@ Public Const RELEASES_URL = "https://api.github.com/repos/quickfs/quickfs-excel-
 Public Const DOWNLOADS_URL = "https://github.com/quickfs/quickfs-excel-addin/releases/download"
 
 Public Const AddInInstalledFile = "quickfs.xlam"
-Public Const LegacyInstalledFile = "quickfsnet.xlam"
 Public Const AddInInstallerFile = "quickfs.install.xlam"
 Public Const AddInFunctionsFile = "quickfs.functions.xlam"
-Public Const LegacyFunctionsFile = "quickfsnet.functions.xlam"
 Public Const AddInKeyFile = "quickfs.key"
 Public Const AddInSettingsFile = "quickfs.cfg"
 Public Const AddInLogFile = "quickfs.log"

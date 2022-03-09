@@ -18,14 +18,7 @@ Public Function HasAddInFunctions() As Boolean
     HasAddInFunctions = _
         SafeDir(LocalPath(AddInFunctionsFile)) <> "" Or _
         SafeDir(LocalPath(AddInFunctionsFile), vbHidden) <> "" Or _
-        HasLegacyFunctions
-End Function
-
-' Check if the functions add-in is installed alongside
-Public Function HasLegacyFunctions() As Boolean
-    HasLegacyFunctions = _
-        SafeDir(LocalPath(LegacyFunctionsFile)) <> "" Or _
-        SafeDir(LocalPath(LegacyFunctionsFile), vbHidden) <> ""
+        False
 End Function
 
 ' Load the functions add-in installed alongside
@@ -56,10 +49,6 @@ Public Sub LoadAddInFunctions()
     
     Dim appSec As MsoAutomationSecurity
     appSec = Application.AutomationSecurity
-    
-    If HasLegacyFunctions Then
-        Name LocalPath(LegacyFunctionsFile) As StagingPath(AddInFunctionsFile)
-    End If
     
     ' If an update is staged, promote it to the active
     ' add-in. Only do this if this is an installed add-in
@@ -103,7 +92,7 @@ End Sub
 Public Function UninstallAddInFunctions() As Boolean
     Dim addin As addin
     For Each addin In Application.AddIns
-        If (addin.name = AddInFunctionsFile Or addin.name = LegacyFunctionsFile) And addin.installed Then
+        If (addin.name = AddInFunctionsFile) And addin.installed Then
             LogMessage "Uninstalling add-in functions"
             addin.installed = False
             UninstallAddInFunctions = True
@@ -123,7 +112,6 @@ Public Function LoadedAddInFunctions() As Boolean
     Dim loaded As String
     loaded = ""
     loaded = Workbooks(AddInFunctionsFile).name
-    loaded = Workbooks(LegacyFunctionsFile).name
     If loaded <> "" Then
         LoadedAddInFunctions = True
     Else
@@ -134,7 +122,7 @@ End Function
 ' Unloads the currently loaded functions add-in.
 ' Does nothing if the add-in is not loaded.
 Public Function UnloadAddInFunctions() As Boolean
-    UnloadAddInFunctions = UnloadFunctions(AddInFunctionsFile) And UnloadFunctions(LegacyFunctionsFile)
+    UnloadAddInFunctions = UnloadFunctions(AddInFunctionsFile)
 End Function
 
 Private Function UnloadFunctions(name As String) As Boolean
@@ -165,39 +153,22 @@ Private Function HasStagedUpdate() As Boolean
     HasStagedUpdate = _
         SafeDir(StagingPath(AddInFunctionsFile)) <> "" Or _
         SafeDir(StagingPath(AddInFunctionsFile), vbHidden) <> "" Or _
-        HasStagedLegacyUpdate
-End Function
-
-Private Function HasStagedLegacyUpdate() As Boolean
-    HasStagedLegacyUpdate = _
-        SafeDir(StagingPath(LegacyFunctionsFile)) <> "" Or _
-        SafeDir(StagingPath(LegacyFunctionsFile), vbHidden) <> ""
+        False
 End Function
 
 ' Promotes the staged functions add-in to active
 Public Sub PromoteStagedUpdate()
     If updatingFunctions Then Exit Sub
 
-    If Not HasStagedUpdate And Not HasLegacyFunctions Then Exit Sub
+    If Not HasStagedUpdate Then Exit Sub
     
     On Error GoTo Finish
     updatingFunctions = True
     If UnloadAddInFunctions Then
         LogMessage "Promoting staged add-in functions"
-        If HasAddInFunctions And Not HasLegacyFunctions Then
+        If HasAddInFunctions Then
             SetAttr LocalPath(AddInFunctionsFile), vbNormal
             Kill LocalPath(AddInFunctionsFile)
-        End If
-        
-        If HasLegacyFunctions And Not HasAddInFunctions Then
-            SetAttr LocalPath(LegacyFunctionsFile), vbNormal
-            Kill LocalPath(LegacyFunctionsFile)
-        ElseIf HasLegacyFunctions Then
-            Name LocalPath(LegacyFunctionsFile) As StagingPath(AddInFunctionsFile)
-        End If
-        
-        If HasStagedLegacyUpdate Then
-            Name StagingPath(LegacyFunctionsFile) As StagingPath(AddInFunctionsFile)
         End If
         
         Name StagingPath(AddInFunctionsFile) As LocalPath(AddInFunctionsFile)
