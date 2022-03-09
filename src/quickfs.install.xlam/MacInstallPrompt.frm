@@ -40,7 +40,7 @@ Private Sub UserForm_Initialize()
             Me.UninstallButtonBg.BackColor = RGB(200, 200, 200)
         Else
             uninstallEnabled = True
-            Me.InstallButton.Caption = "Upgrade"
+            Me.InstallButton.Caption = "Update"
             Me.UninstallButton.BackColor = RGB(230, 33, 23)
             Me.UninstallButtonBg.BackColor = RGB(230, 33, 23)
         End If
