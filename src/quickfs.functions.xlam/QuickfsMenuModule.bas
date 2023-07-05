@@ -212,7 +212,7 @@ Public Sub UpdateCustomMenu()
             ButtonDefs(9) = "&Refresh Data,QuickfsRefresh,Recalculate open Excel Workbooks,37,True"
             ButtonDefs(10) = "Un&link Formulas,QuickfsUnlink,Unlink QuickFS formulas,2309,False"
             
-            ButtonDefs(11) = "&Message Log,QuickfsMessages,Display message log,588,True"
+'            ButtonDefs(11) = "&Message Log,QuickfsMessages,Display message log,588,True"
             ButtonDefs(12) = "Check For &Updates,QuickfsUpdate,Check for updates,273,False"
             ButtonDefs(13) = "&About,QuickfsAbout,Information about the add-on,487,False"
         
