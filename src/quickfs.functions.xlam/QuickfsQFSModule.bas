@@ -160,6 +160,10 @@ HandleErrors:
         ShowRateLimitWarning
     End If
 
+    If Err.Number = UNSPECIFIED_API_ERROR Then
+        ShowRequestTimeoutMessage
+    End If
+
     If Err.Number = MISSING_VALUE_ERROR Then
         QFS = DefaultNullValue
     ElseIf Err.Number = INVALID_ARGS_ERROR Then

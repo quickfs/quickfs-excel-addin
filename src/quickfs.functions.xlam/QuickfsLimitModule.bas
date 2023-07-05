@@ -12,6 +12,13 @@ Public Sub ShowRateLimitWarning(Optional reset As Boolean = True)
     If reset Then SetRateLimitTimer
 End Sub
 
+Public Sub ShowRequestTimeoutMessage()
+    MsgBox _
+        Title:="[QuickFS] Request Timeout Error", _
+        Prompt:="Our server took too long to respond, which caused your request to fail. Please email your spreadsheet to support@quickfs.net so that we can fix the issue.", _
+        Buttons:=vbCritical
+End Sub
+
 Public Function IsRateLimited()
     If RedisplayWarning > Now() Then
         IsRateLimited = True

@@ -64,7 +64,7 @@ Public Function RequestAndCacheKeys(ByRef keys() As String)
         Dim WebClient As New WebClient
 
         WebClient.BaseUrl = BatchUrl
-        WebClient.TimeoutMs = 10000
+        WebClient.TimeoutMs = 60000
 
         ' Setup Basic Auth with API key as username and empty password
         Dim APIKey As String: APIKey = GetAPIKey()
