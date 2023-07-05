@@ -17,7 +17,7 @@ Private Sub Workbook_Open()
     End If
     
     ' Download newer version if available and auto-update is not disabled
-    If AddInInstalled And GetSetting("autoUpdate", True) And GetSetting("updateOnLaunch", True) Then
+    If AddInInstalled And GetSetting("autoUpdate", False) And GetSetting("updateOnLaunch", False) Then
         Call DownloadUpdates(blockEvents:=True)
     End If
     

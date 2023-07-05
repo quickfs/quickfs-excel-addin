@@ -5,7 +5,7 @@ Option Private Module
 Private lastUpdateCheck As Date
 
 Public Sub AutoUpdateCheck()
-    If Not GetSetting("autoUpdate", True) Then Exit Sub
+    If Not GetSetting("autoUpdate", False) Then Exit Sub
     ' Default to one auto-check per day, but allow
     ' interval to be specified in minutes (primarily
     ' for testing)
